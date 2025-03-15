@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://8edrpsd4uogx"]
+
+[ext_resource type="PackedScene" uid="uid://dkp3nkpbq3e12" path="res://pause_menu.tscn" id="1_uhqqe"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_feb5d"]
+sky_material = SubResource("ProceduralSkyMaterial_e2o6t")
+
+[sub_resource type="Environment" id="Environment_fc0e3"]
+background_mode = 2
+sky = SubResource("Sky_feb5d")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_7jktm"]
+size = Vector2(10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ryrav"]
+
+[node name="TestScene" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fc0e3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_7jktm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.611222, 0)
+mesh = SubResource("BoxMesh_ryrav")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.395674, -0.183742, 0.899823, 0, 0.979782, 0.200069, -0.918391, -0.0791621, 0.387674, 1.39132, 1.09734, 1.7552)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("1_uhqqe")]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 110.0
+offset_top = 255.0
+offset_right = 302.0
+offset_bottom = 447.0
+rotation = -0.226087
